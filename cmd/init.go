@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	port               string
-	mapWorkersCount    int
-	reduceWorkersCount int
+	addr     string
+	mWorkers int
+	rWorkers int
 )
 
 // initCmd represents the init command
@@ -20,17 +20,18 @@ var initCmd = &cobra.Command{
 	Short: "Initialize master node",
 	Long:  `Initialize a master node that controls the map/reduce workers`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(port, mapWorkersCount, reduceWorkersCount)
+		fmt.Println(addr, mWorkers, rWorkers)
 		fmt.Println("This is kyle")
 	},
 }
 
 func init() {
-	initCmd.Flags().StringVarP(&port, "port", "p", "8000", "Port where the master node listens to")
 	initCmd.Flags().
-		IntVarP(&mapWorkersCount, "map-workers", "m", 1, "Number of map workers to be used")
+		StringVarP(&addr, "addr", "a", "localhost:8000", "Address where the master node listens to")
 	initCmd.Flags().
-		IntVarP(&reduceWorkersCount, "reduce-workers", "r", 1, "Number of reduce workers to be used")
+		IntVarP(&mWorkers, "map-workers", "m", 1, "Number of map workers to be used")
+	initCmd.Flags().
+		IntVarP(&rWorkers, "reduce-workers", "r", 1, "Number of reduce workers to be used")
 	rootCmd.AddCommand(initCmd)
 
 	// Here you will define your flags and configuration settings.
