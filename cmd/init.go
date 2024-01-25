@@ -3,9 +3,9 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 */package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+
+	"github.com/kylehipz/map-reduce-go/master"
 )
 
 var (
@@ -20,8 +20,7 @@ var initCmd = &cobra.Command{
 	Short: "Initialize master node",
 	Long:  `Initialize a master node that controls the map/reduce workers`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println(addr, mWorkers, rWorkers)
-		fmt.Println("This is kyle")
+		master.Init(addr, mWorkers, rWorkers)
 	},
 }
 
@@ -33,14 +32,4 @@ func init() {
 	initCmd.Flags().
 		IntVarP(&rWorkers, "reduce-workers", "r", 1, "Number of reduce workers to be used")
 	rootCmd.AddCommand(initCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// initCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// initCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
