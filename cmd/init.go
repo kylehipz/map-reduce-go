@@ -20,8 +20,10 @@ var initCmd = &cobra.Command{
 	Short: "Initialize master node",
 	Long:  `Initialize a master node that controls the map/reduce workers`,
 	Run: func(cmd *cobra.Command, args []string) {
-		master.Init(addr, mWorkers, rWorkers)
+		directory := args[0]
+		master.Init(directory)
 	},
+	Args: cobra.MatchAll(cobra.ExactArgs(1), cobra.OnlyValidArgs),
 }
 
 func init() {

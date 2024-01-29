@@ -4,9 +4,9 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
-	"fmt"
-
 	"github.com/spf13/cobra"
+
+	"github.com/kylehipz/map-reduce-go/worker"
 )
 
 // joinCmd represents the join command
@@ -15,7 +15,7 @@ var joinCmd = &cobra.Command{
 	Short: "Join as a worker node",
 	Long:  `Initialize a worker node. Join a master node as a map/reduce worker`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("join")
+		worker.Init()
 	},
 }
 
